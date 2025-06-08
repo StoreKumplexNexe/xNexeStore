@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>xNexe Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <style>
+    /* ---- Podstawowe style ---- */
+    body {
+      margin: 0;
+      font-family: 'Orbitron', sans-serif;
+      background: url('novaskin-wallpaper-skywars3.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+    }
+
+    /* Animacja ładowania nagłówka (header) - płynne pojawianie się i lekki blask */
+    @keyframes headerFadeIn {
+      0% {
+        opacity: 0;
+        text-shadow: 0 0 0 #0f0;
+      }
+      100% {
+        opacity: 1;
+        text-shadow: 0 0 10px #0f0;
+      }
+    }
+
+    header {
+      text-align: center;
+      font-size: 3rem;
+      padding: 2rem;
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 15px #0f0;
+      text-shadow: 0 0 10px #0f0;
+      animation: headerFadeIn 2s ease forwards;
+    }
+
+    /* Kontener na przyciski płatności z animacją pojawiania się */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .payment-options {
+      display: flex;
+      justify-content: center;
+      margin: 2rem 0;
+      gap: 2rem;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 2s; /* po animacji headera */
+      opacity: 0; /* na start niewidoczne */
+    }
+
+    .payment-options button {
+      background: black;
+      border: 2px solid #0f0;
+      color: #0f0;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px #0f0;
+      transition: transform 0.3s;
+    }
+
+    .payment-options button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px #0f0;
+    }
+
+    /* Sklep - elementy z animacją pojawiania się (lekki fadeIn + przesunięcie) */
+    .store {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      padding: 2rem;
+    }
+
+    .item {
+      width: 280px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 2px solid #0f0;
+      box-shadow: 0 0 15px #0f0;
+      border-radius: 12px;
+      padding: 1.5rem;
+      cursor: pointer;
+      transition: transform 0.3s;
+      opacity: 0;  /* start z niewidocznym */
+      transform: translateY(20px);
+      animation-fill-mode: forwards;
+    }
+
+    /* Efekt powiększenia przy hover */
+    .item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #0f0;
+    }
+
+    /* Animacja pojawiania się elementów sklepu z delayem */
+    .item.fadeIn {
+      animation-name: fadeInUp;
+      animation-duration: 0.5s;
+      animation-timing-function: ease;
+      animation-fill-mode: forwards;
+    }
+
+    /* Modal (okno ostrzeżenia) - animacja wskakiwania i wygaszania */
+    @keyframes modalScaleIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.3);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 100;
+      text-align: center;
+    }
+
+    .modal.show {
+      display: flex;
+      animation: modalScaleIn 0.3s ease forwards;
+    }
+
+    .modal-content {
+      background: linear-gradient(145deg, #550000, #aa0000);
+      padding: 3rem;
+      color: white;
+      border-radius: 16px;
+      box-shadow: 0 0 25px red;
+      max-width: 90%;
+    }
+
+    .modal-content p {
+      font-size: 1.2rem;
+    }
+
+    .modal-content a {
+      color: #fff;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    footer {
+  position: fixed; /* przykleja do dołu */
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  color: white; /* Zmienia kolor tekstu na biały */
+  background: rgba(0, 0, 0, 0.6); /* lekko przezroczyste tło dla czytelności */
+  padding: 10px 0;
+  font-size: 14px;
+  z-index: 1000;
+}
+  </style>
+</head>
+<body>
+  <header>xNexe Shop</header>
+<!-- inne elementy strony -->
+
+  <div class="store" id="store"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" id="modal-content"></div>
+  </div>
+
+  <div class="payment-options">
+    <button onclick="selectPayment('pln')">Płatność PLN</button>
+    <button onclick="selectPayment('waluta')">Płatność na anarchia.gg LF</button>
+  </div>
+
+  <footer>
+    &copy; 2025 xNexe. Wszelkie prawa zastrzeżone.
+  </footer>
+
+  <script>
+    const storeEl = document.getElementById('store');
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modal-content');
+
+const items = [
+  // PLN - tylko 2 przedmioty
+  {
+    title: '👑 VIP na Discordzie',
+    price: '30zł',
+    type: 'pln',
+    description: `Strefa VIP<br>Chat VIP<br>Głosowy VIP<br>Sposoby na zarobek VIP<br>Branie na live<br>Losowania dla VIPów`,
+    link: 'https://tipply.pl/@xNexe'
+  },
+  {
+    title: '🛡️ Moderator YT',
+    price: '50zł',
+    type: 'pln',
+    description: `Branie na live<br>Głosowy Moderator<br>Chat Moderator<br>Losowania dla Moderatorów`,
+    link: 'https://tipply.pl/@xNexe'
+  },
+  // WALUTA W GRZE - 3 przedmioty
+  {
+    title: '👥 Dołączenie do klanu',
+    price: '20k (tylko waluta)',
+    type: 'waluta',
+    description: `Chat klanowy<br>Głosowy klanowy<br>Branie na live<br>Branie na odcinki`
+  },
+  {
+    title: '👑 VIP na Discordzie',
+    price: '80k',
+    type: 'waluta',
+    description: `Strefa VIP<br>Chat VIP<br>Głosowy VIP<br>Sposoby na zarobek VIP<br>Branie na live<br>Losowania dla VIPów`
+  },
+  {
+    title: '🛡️ Moderator YT',
+    price: '200k',
+    type: 'waluta',
+    description: `Branie na live<br>Głosowy Moderator<br>Chat Moderator<br>Losowania dla Moderatorów`
+  }
+];
+    function selectPayment(type) {
+      storeEl.innerHTML = '';
+      const filtered = items.filter(item => item.type === type);
+      filtered.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = 'item';
+        div.innerHTML = `
+          <h2>${item.title}</h2>
+          <p><strong>Cena:</strong> ${item.price}</p>
+          <p>${item.description}</p>
+        `;
+        div.onclick = () => showModal(item, type);
+
+        // Dodajemy klasę animacji z opóźnieniem, żeby ładnie "wskakiwały"
+        div.style.animationDelay = `${index * 0.15}s`;
+        div.classList.add('fadeIn');
+
+        storeEl.appendChild(div);
+      });
+    }
+
+    function showModal(item, type) {
+      if (type === 'pln') {
+        modalContent.innerHTML = `
+          <h2>Ostrzeżenie</h2>
+          <p>Pamiętaj, aby wpisać <strong>swój nick Discord</strong> w opisie oraz poprawną kwotę.</p>
+          <p>Rangi nadawane są do 36 godzin.</p>
+          <p><a href="${item.link}" target="_blank">Kliknij tutaj, aby zapłacić</a></p>
+        `;
+      } else {
+        modalContent.innerHTML = `
+          <h2>Otwórz ticket</h2>
+          <p>Ten produkt kupuje się tylko za walutę w grze.</p>
+          <p>Otwórz ticket na Discordzie: <a href="https://discord.gg/xER8NGGTrA" target="_blank">Kliknij tutaj</a></p>
+        `;
+      }
+      modal.classList.add('show');
+    }
+
+    modal.onclick = () => {
+      modal.classList.remove('show');
+    }
+  </script>
+</body>
+</html>
