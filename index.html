@@ -169,7 +169,7 @@
   text-align: center;
   color: white; /* Zmienia kolor tekstu na biały */
   background: rgba(0, 0, 0, 0.6); /* lekko przezroczyste tło dla czytelności */
-  padding: 10px 0;
+  padding: 14px 0;
   font-size: 14px;
   z-index: 1000;
 }
@@ -249,7 +249,7 @@ const items = [
         div.onclick = () => showModal(item, type);
 
         // Dodajemy klasę animacji z opóźnieniem, żeby ładnie "wskakiwały"
-        div.style.animationDelay = `${index * 0.01}s`;
+        div.style.animationDelay = `${index * 0.15}s`;
         div.classList.add('fadeIn');
 
         storeEl.appendChild(div);
