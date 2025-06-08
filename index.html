@@ -249,7 +249,7 @@ const items = [
         div.onclick = () => showModal(item, type);
 
         // Dodajemy klasę animacji z opóźnieniem, żeby ładnie "wskakiwały"
-        div.style.animationDelay = `${index * 0.15}s`;
+        div.style.animationDelay = `${index * 0.01}s`;
         div.classList.add('fadeIn');
 
         storeEl.appendChild(div);
