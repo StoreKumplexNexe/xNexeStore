@@ -53,20 +53,8 @@
       opacity: 0;
     }
 
-    /* Styl dla przycisków płatności */
-    .payment-options button {
-      background: black;
-      border: 2px solid rgb(255, 255, 255);
-      color: rgb(255, 255, 255);
-      padding: 1rem 2rem;
-      font-size: 1.2rem;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgb(255, 255, 255);
-      transition: transform 0.3s;
-    }
-
-    /* Animacja hover przycisków */
-    .payment-options button {
+/* Styl dla przycisków płatności */
+.payment-options button {
   background: black;
   border: 2px solid rgb(255, 255, 255);
   color: rgb(255, 255, 255);
@@ -75,8 +63,13 @@
   cursor: pointer;
   box-shadow: 0 0 10px rgb(255, 255, 255);
   transition: transform 0.3s;
-  border-radius: 12px; /* Dodane */
+  border-radius: 12px; /* Dodane zaokrąglenie */
 }
+
+    /* Animacja hover przycisków */
+    .payment-options button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 20px rgb(255, 255, 255);
     }
 
     /* Sekcja sklepu z produktami */
@@ -196,7 +189,7 @@
     /* Efekt po najechaniu na ikony */
     .social-buttons a:hover {
       transform: scale(1.2);
-      background: rgb(255, 255, 255);
+      background: #0f0;
       color: black;
     }
 
