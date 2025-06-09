@@ -31,15 +31,15 @@
       font-size: 3rem;
       padding: 2rem;
       background: rgba(0, 0, 0, 0.7);
-      box-shadow: 0 0 15px #0f0;
-      text-shadow: 0 0 10px #0f0;
+      box-shadow: 0 0 15px rgb(255, 255, 255);
+      text-shadow: 0 0 10px #ffffff;
       animation: headerFadeIn 2s ease forwards;
     }
 
     /* Animacja wejścia nagłówka */
     @keyframes headerFadeIn {
-      0% { opacity: 0; text-shadow: 0 0 0 #0f0; }
-      100% { opacity: 1; text-shadow: 0 0 10px #0f0; }
+      0% { opacity: 0; text-shadow: 0 0 0 rgb(255, 255, 255); }
+      100% { opacity: 1; text-shadow: 0 0 10px rgb(255, 255, 255); }
     }
 
     /* Przyciski wyboru płatności */
@@ -56,19 +56,19 @@
     /* Styl dla przycisków płatności */
     .payment-options button {
       background: black;
-      border: 2px solid #0f0;
-      color: #0f0;
+      border: 2px solid rgb(255, 255, 255);
+      color: rgb(255, 255, 255);
       padding: 1rem 2rem;
       font-size: 1.2rem;
       cursor: pointer;
-      box-shadow: 0 0 10px #0f0;
+      box-shadow: 0 0 10px rgb(255, 255, 255);
       transition: transform 0.3s;
     }
 
     /* Animacja hover przycisków */
     .payment-options button:hover {
       transform: scale(1.1);
-      box-shadow: 0 0 20px #0f0;
+      box-shadow: 0 0 20px rgb(255, 255, 255);
     }
 
     /* Sekcja sklepu z produktami */
@@ -84,8 +84,8 @@
     .item {
       width: 280px;
       background: rgba(0, 0, 0, 0.8);
-      border: 2px solid #0f0;
-      box-shadow: 0 0 15px #0f0;
+      border: 2px solid rgb(255, 255, 255);
+      box-shadow: 0 0 15px rgb(255, 255, 255);
       border-radius: 12px;
       padding: 1.5rem;
       cursor: pointer;
@@ -98,7 +98,7 @@
     /* Animacja hover produktu */
     .item:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 25px #0f0;
+      box-shadow: 0 0 25px rgb(255, 255, 255);
     }
 
     /* Dodawanie animacji do karty */
@@ -182,13 +182,13 @@
       padding: 10px;
       border-radius: 50%;
       transition: transform 0.3s, background 0.3s;
-      box-shadow: 0 0 10px #0f0;
+      box-shadow: 0 0 10px rgb(255, 255, 255);
     }
 
     /* Efekt po najechaniu na ikony */
     .social-buttons a:hover {
       transform: scale(1.2);
-      background: #0f0;
+      background: rgb(255, 255, 255);
       color: black;
     }
 
