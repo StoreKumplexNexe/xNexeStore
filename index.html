@@ -66,9 +66,17 @@
     }
 
     /* Animacja hover przycisków */
-    .payment-options button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 20px rgb(255, 255, 255);
+    .payment-options button {
+  background: black;
+  border: 2px solid rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgb(255, 255, 255);
+  transition: transform 0.3s;
+  border-radius: 12px; /* Dodane */
+}
     }
 
     /* Sekcja sklepu z produktami */
