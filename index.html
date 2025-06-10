@@ -1,24 +1,13 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <!-- Ustawienie kodowania znaków -->
   <meta charset="UTF-8" />
-  <!-- Skalowanie strony na urządzeniach mobilnych -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>xNexe Shop</title>
-  <head>
   <title>xNexe Store</title>
   <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/1377344109366345778/1378099937752907918/image.png?ex=68488e15&is=68473c95&hm=09ba1546ef252d498fbe9d4d2501d3633c1b552462aa6261a864c67edf166ea4&">
-  <!-- reszta np. linki do stylów, skrypty itd. -->
-</head>
-
-  <!-- Czcionka Orbitron -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
-  <!-- Ikony Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <style>
-    /* Ustawienia ogólne dla całego dokumentu */
     html, body {
       height: 100%;
       margin: 0;
@@ -29,25 +18,19 @@
       background-size: cover;
       color: white;
     }
-
-    /* Nagłówek strony */
     header {
       text-align: center;
       font-size: 3rem;
       padding: 2rem;
       background: rgba(0, 0, 0, 0.7);
-      box-shadow: 0 0 15px rgb(255, 255, 255);
-      text-shadow: 0 0 10px #ffffff;
+      box-shadow: 0 0 15px white;
+      text-shadow: 0 0 10px white;
       animation: headerFadeIn 2s ease forwards;
     }
-
-    /* Animacja wejścia nagłówka */
     @keyframes headerFadeIn {
-      0% { opacity: 0; text-shadow: 0 0 0 rgb(255, 255, 255); }
-      100% { opacity: 1; text-shadow: 0 0 10px rgb(255, 255, 255); }
+      0% { opacity: 0; text-shadow: 0 0 0 white; }
+      100% { opacity: 1; text-shadow: 0 0 10px white; }
     }
-
-    /* Przyciski wyboru płatności */
     .payment-options {
       display: flex;
       justify-content: center;
@@ -57,27 +40,21 @@
       animation-delay: 2s;
       opacity: 0;
     }
-
-/* Styl dla przycisków płatności */
-.payment-options button {
-  background: black;
-  border: 2px solid rgb(255, 255, 255);
-  color: rgb(255, 255, 255);
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgb(255, 255, 255);
-  transition: transform 0.3s;
-  border-radius: 12px; /* Dodane zaokrąglenie */
-}
-
-    /* Animacja hover przycisków */
+    .payment-options button {
+      background: black;
+      border: 2px solid white;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px white;
+      transition: transform 0.3s;
+      border-radius: 12px;
+    }
     .payment-options button:hover {
       transform: scale(1.1);
-      box-shadow: 0 0 20px rgb(255, 255, 255);
+      box-shadow: 0 0 20px white;
     }
-
-    /* Sekcja sklepu z produktami */
     .store {
       display: flex;
       flex-wrap: wrap;
@@ -85,13 +62,11 @@
       gap: 2rem;
       padding: 2rem;
     }
-
-    /* Karta produktu */
     .item {
       width: 280px;
       background: rgba(0, 0, 0, 0.8);
-      border: 2px solid rgb(255, 255, 255);
-      box-shadow: 0 0 15px rgb(255, 255, 255);
+      border: 2px solid white;
+      box-shadow: 0 0 15px white;
       border-radius: 12px;
       padding: 1.5rem;
       cursor: pointer;
@@ -100,28 +75,20 @@
       transform: translateY(20px);
       animation-fill-mode: forwards;
     }
-
-    /* Animacja hover produktu */
     .item:hover {
       transform: scale(1.05);
-      box-shadow: 0 0 25px rgb(255, 255, 255);
+      box-shadow: 0 0 25px white;
     }
-
-    /* Dodawanie animacji do karty */
     .item.fadeIn {
       animation-name: fadeInUp;
       animation-duration: 0.5s;
       animation-timing-function: ease;
       animation-fill-mode: forwards;
     }
-
-    /* Kluczowa animacja wejścia */
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    /* Tło modala */
     .modal {
       position: fixed;
       top: 0; left: 0;
@@ -134,20 +101,14 @@
       z-index: 100;
       text-align: center;
     }
-
-    /* Pokazanie modala */
     .modal.show {
       display: flex;
       animation: modalScaleIn 0.3s ease forwards;
     }
-
-    /* Animacja powiększenia modala */
     @keyframes modalScaleIn {
       0% { opacity: 0; transform: scale(0.3); }
       100% { opacity: 1; transform: scale(1); }
     }
-
-    /* Wnętrze modala */
     .modal-content {
       background: linear-gradient(145deg, #550000, #aa0000);
       padding: 3rem;
@@ -156,26 +117,20 @@
       box-shadow: 0 0 25px red;
       max-width: 90%;
     }
-
-    /* Linki w modalach */
     .modal-content a {
       color: #fff;
       text-decoration: underline;
       font-weight: bold;
     }
-
-    /* Przyciski social media */
     .social-buttons {
       position: fixed;
       right: 20px;
-      bottom: 60px; /* nad stopką */
+      bottom: 60px;
       display: flex;
       flex-direction: column;
       gap: 12px;
       z-index: 999;
     }
-
-    /* Styl dla ikon */
     .social-buttons a {
       display: flex;
       align-items: center;
@@ -188,17 +143,13 @@
       padding: 10px;
       border-radius: 50%;
       transition: transform 0.3s, background 0.3s;
-      box-shadow: 0 0 10px rgb(255, 255, 255);
+      box-shadow: 0 0 10px white;
     }
-
-    /* Efekt po najechaniu na ikony */
     .social-buttons a:hover {
       transform: scale(1.2);
       background: #0f0;
       color: black;
     }
-
-    /* Stopka na dole strony */
     footer {
       background: rgba(0, 0, 0, 0.6);
       color: white;
@@ -206,49 +157,44 @@
       padding: 10px 0;
       font-size: 14px;
     }
+    .announcement {
+      background: rgba(255, 0, 0, 0.8);
+      padding: 1rem;
+      margin: 1rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 15px red;
+      animation: headerFadeIn 2s ease forwards;
+    }
   </style>
 </head>
-
 <body>
-  <!-- Główna zawartość strony -->
   <main style="flex: 1;">
-    <!-- Tytuł sklepu -->
     <header>xNexe Shop</header>
-
-    <!-- Wybór sposobu płatności -->
+    <div class="announcement">
+      <p><strong>W Piątek (13.06.) o 20/21</strong><br>Będzie live a na live topeczka na 100k (top 1 = 100k) na anarchii więc zapraszam wszystkich serdecznie do udziału w topce myślę że będzie można zgarnąć jak za darmo mam nadzieję że się widzimy ❤️<br>Kto będzie na live w piątek niech da reakcje na serwerze discord 🔝<br><br><em> 🛒</em></p>
+    </div>
     <div class="payment-options">
       <button onclick="selectPayment('pln')">Płatność PLN</button>
       <button onclick="selectPayment('waluta')">Płatność na anarchia.gg LF</button>
     </div>
-
-    <!-- Miejsce na dynamiczne karty produktów -->
     <div class="store" id="store"></div>
-
-    <!-- Modal ostrzegawczy lub info -->
     <div class="modal" id="modal">
       <div class="modal-content" id="modal-content"></div>
     </div>
-
-    <!-- Przyciski social media: YouTube, Instagram, Donate -->
     <div class="social-buttons">
       <a href="https://youtube.com/@xNexe_ofc" target="_blank"><i class="fab fa-youtube"></i></a>
       <a href="https://discord.gg/xER8NGGTrA" target="_blank"><i class="fab fa-discord"></i></a>
       <a href="https://tipply.pl/@xNexe" target="_blank"><i class="fa-solid fa-coins"></i></a>
     </div>
   </main>
-
-  <!-- Stopka z informacją o prawach autorskich -->
   <footer>
     &copy; 2025 xNexe. Wszelkie prawa zastrzeżone.
   </footer>
-
-  <!-- Skrypt JS obsługujący dynamiczne produkty -->
   <script>
     const storeEl = document.getElementById('store');
     const modal = document.getElementById('modal');
     const modalContent = document.getElementById('modal-content');
-
-    // Lista produktów
     const items = [
       {
         title: '👑 VIP na Discordzie',
@@ -258,7 +204,7 @@
         link: 'https://tipply.pl/@xNexe'
       },
       {
-        title: '🛡️ Moderator YT',
+        title: '🗭️ Moderator YT',
         price: '50zł',
         type: 'pln',
         description: `Branie na live<br>Głosowy Moderator<br>Chat Moderator<br>Losowania dla Moderatorów`,
@@ -277,14 +223,12 @@
         description: `Strefa VIP<br>Chat VIP<br>Głosowy VIP<br>Sposoby na zarobek VIP<br>Branie na live<br>Losowania dla VIPów`
       },
       {
-        title: '🛡️ Moderator YT',
+        title: '🗭️ Moderator YT',
         price: '200k',
         type: 'waluta',
         description: `Branie na live<br>Głosowy Moderator<br>Chat Moderator<br>Losowania dla Moderatorów`
       }
     ];
-
-    // Pokazywanie produktów w zależności od typu
     function selectPayment(type) {
       storeEl.innerHTML = '';
       const filtered = items.filter(item => item.type === type);
@@ -302,8 +246,6 @@
         storeEl.appendChild(div);
       });
     }
-
-    // Pokazanie odpowiedniego modala
     function showModal(item, type) {
       if (type === 'pln') {
         modalContent.innerHTML = `
@@ -321,8 +263,6 @@
       }
       modal.classList.add('show');
     }
-
-    // Zamknięcie modala po kliknięciu
     modal.onclick = () => {
       modal.classList.remove('show');
     }
